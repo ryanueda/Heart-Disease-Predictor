@@ -1,0 +1,46 @@
+<!-- Inherits from layout.html -->
+{% extends "layout.html" %}
+<!-- The block content replace the one encapsulated in layout.html -->
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <form name="frmPredict" action="/predict" method="post" novalidate>
+            <fieldset class="form-group">
+                <legend>{{title}}</legend>
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.sepal_l.label }}<br>
+                    {{ form.sepal_l(class_='form-control') }}
+                    {% for error in form.sepal_l.errors %}
+                    <span class="error-message">{{ error }}</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.sepal_w.label }}<br>
+                    {{ form.sepal_w(class_='form-control') }}
+                    {% for error in form.sepal_l.errors %}
+                    <span class="error-message">{{ error }}</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.petal_l.label }}<br>
+                    {{ form.petal_l(class_='form-control') }}
+                    {% for error in form.sepal_l.errors %}
+                    <span class="error-message">{{ error }}</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.petal_w.label }}<br>
+                    {{ form.petal_w(class_='form-control') }}
+                    {% for error in form.sepal_l.errors %}
+                    <span class="error-message">{{ error }}</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.submit(class_='form-control') }}
+                </p>
+            </fieldset>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -9,34 +9,69 @@
                 <legend>{{title}}</legend>
                 {{ form.hidden_tag() }}
                 <p>
-                    {{ form.sepal_l.label }}<br>
-                    {{ form.sepal_l(class_='form-control') }}
-                    {% for error in form.sepal_l.errors %}
+                    {{ form.HighBP.label }}<br>
+                    {{ form.HighBP(class_='form-control') }}
+                    {% for error in form.HighBP.errors %}
                     <span class="error-message">{{ error }}</span>
                     {% endfor %}
                 </p>
                 <p>
-                    {{ form.sepal_w.label }}<br>
-                    {{ form.sepal_w(class_='form-control') }}
-                    {% for error in form.sepal_l.errors %}
+                    {{ form.HighChol.label }}<br>
+                    {{ form.HighChol(class_='form-control') }}
+                    {% for error in form.HighChol.errors %}
                     <span class="error-message">{{ error }}</span>
                     {% endfor %}
                 </p>
                 <p>
-                    {{ form.petal_l.label }}<br>
-                    {{ form.petal_l(class_='form-control') }}
-                    {% for error in form.sepal_l.errors %}
+                    {{ form.BMI.label }}<br>
+                    {{ form.BMI(class_='form-control') }}
+                    {% for error in form.BMI.errors %}
                     <span class="error-message">{{ error }}</span>
                     {% endfor %}
                 </p>
                 <p>
-                    {{ form.petal_w.label }}<br>
-                    {{ form.petal_w(class_='form-control') }}
-                    {% for error in form.sepal_l.errors %}
+                    {{ form.Smoker.label }}<br>
+                    {{ form.Smoker(class_='form-control') }}
+                    {% for error in form.Smoker.errors %}
                     <span class="error-message">{{ error }}</span>
                     {% endfor %}
                 </p>
                 <p>
+                    {{ form.Stroke.label }}<br>
+                    {{ form.Stroke(class_='form-control') }}
+                    {% for error in form.Stroke.errors %}
+                    <span class="error-message">{{ error }}</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.Diabetes.label }}<br>
+                    {{ form.Diabetes(class_='form-control') }}
+                    {% for error in form.Diabetes.errors %}
+                    <span class="error-message">{{ error }}</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.HvyAlcoholConsump.label }}<br>
+                    {{ form.HvyAlcoholConsump(class_='form-control') }}
+                    {% for error in form.HvyAlcoholConsump.errors %}
+                    <span class="error-message">{{ error }}</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.Sex.label }}<br>
+                    {{ form.Sex(class_='form-control') }}
+                    {% for error in form.Sex.errors %}
+                    <span class="error-message">{{ error }}</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.Age.label }}<br>
+                    {{ form.Age(class_='form-control') }}
+                    {% for error in form.Age.errors %}
+                    <span class="error-message">{{ error }}</span>
+                    {% endfor %}
+                </p>
+                <p class="submit">
                     {{ form.submit(class_='form-control') }}
                 </p>
             </fieldset>

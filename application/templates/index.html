@@ -77,5 +77,48 @@
             </fieldset>
         </form>
     </div>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>HighBP</th>
+                <th>HighChol</th>
+                <th>BMI</th>
+                <th>Smoker</th>
+                <th>Stroke</th>
+                <th>Diabetes</th>
+                <th>HvyAlcoholConsump</th>
+                <th>Sex</th>
+                <th>Age</th>
+                <th>Prediction</th>
+                <th>Timestamp</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for entry in entries %}
+            <tr>
+                <td>{{ entry.HighBP}}</td>
+                <td>{{ entry.HighChol }}</td>
+                <td>{{ entry.BMI}}</td>
+                <td>{{ entry.Smoker }}</td>
+                <td>{{ entry.Stroke}}</td>
+                <td>{{ entry.Diabetes}}</td>
+                <td>{{ entry.HvyAlcoholConsump}}</td>
+                <td>{{ entry.Sex}}</td>
+                <td>{{ entry.Age}}</td>
+                <td>{{ predict_type[entry.prediction|int]}}</td>
+                <td>{{ entry.predicted_on.strftime("%d %b %y %H:%M")}}</td>
+                <td>
+                    <form name="frmRemoveEntry" action="/remove" method="post" novalidate>
+                        <input type="hidden" name="id" value="{{entry.id}}">
+                        <input type="submit" class="rmv form-control btn-danger" value="Remove">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}

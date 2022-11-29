@@ -69,6 +69,29 @@ def remove():
     return render_template("index.html", title="Enter Iris Parameters",
     form=form, entries = get_entries(), index=True, predict_type=predict_type)
 
+
+#API get entry
+@app.route("/api/get/<id>", methods=['GET'])
+def api_get(id):
+    #retrieve the entry using id from client
+    entry = get_entry(int(id))
+    #Prepare a dictionary for json conversion
+    data = {
+        'id' : entry.id,
+        'HighBP' : entry.HighBP,
+        'HighChol' : entry.HighChol,
+        'BMI' : entry.BMI,
+        'Smoker' : entry.Smoker,
+        'Stroke' : entry.Stroke,
+        'Diabetes' : entry.Diabetes,
+        'HvyAlcoholConsump' : entry.HvyAlcoholConsump,
+        'Sex' : entry.Sex,
+        'Age' : entry.Age,
+        'prediction': entry.prediction}
+    #Convert the data to json
+    result = jsonify(data)
+    return result #response back
+
         
 def add_entry(new_entry):
     try:
@@ -100,3 +123,55 @@ def remove_entry(id):
         db.session.rollback()
         flash(error,"danger")
         return 0
+
+from flask import json, jsonify
+...
+#API: add entry
+@app.route("/api/add", methods=['POST'])
+def api_add():
+    #retrieve the json file posted from client
+    data = request.get_json()
+    #retrieve each field from the data
+    HighBP = data['HighBP']
+    HighChol = data['HighChol']
+    BMI = data['BMI']
+    Smoker = data['Smoker']
+    Stroke = data['Stroke']
+    Diabetes = data['Diabetes']
+    HvyAlcoholConsump = data['HvyAlcoholConsump']
+    Sex = data['Sex']
+    Age = data['Age']
+    prediction = data['prediction']
+    #create an Entry object store all data for db action
+    new_entry = Entry(
+        HighBP=HighBP, 
+        HighChol=HighChol,
+        BMI=BMI,
+        Smoker=Smoker,
+        Stroke=Stroke,
+        Diabetes=Diabetes,
+        HvyAlcoholConsump=HvyAlcoholConsump,
+        Sex=Sex,
+        Age=Age,
+        prediction = prediction,
+        predicted_on=datetime.utcnow())
+    #invoke the add entry function to add entry
+    result = add_entry(new_entry)
+    #return the result of the db action
+    return jsonify({'id':result})
+
+def get_entry(id):
+    try:
+        # entries = Entry.query.filter(Entry.id==id) version 2
+        result = db.get_or_404(Entry, id)
+        return result
+    except Exception as error:
+        db.session.rollback()
+        flash(error,"danger")
+        return 0
+
+#API delete entry
+@app.route("/api/delete/<id>", methods=['GET'])
+def api_delete(id):
+    entry = remove_entry(int(id))
+    return jsonify({'result':'ok'})

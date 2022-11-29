@@ -16,7 +16,7 @@ from application.forms import PredictionForm
 #Handles http://127.0.0.1:5000/
 @app.route('/')
 @app.route('/index')
-@app.route('/home')
+@app.route('/predict')
 def index_page():
     form1 = PredictionForm()
     return render_template("index.html", form=form1, entries=get_entries(), predict_type=predict_type, title="Enter Parameters For Prediction")

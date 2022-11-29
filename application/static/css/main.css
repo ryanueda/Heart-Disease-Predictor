@@ -67,7 +67,7 @@ footer {
 
 form {
     margin: auto;
-    width: 700px;
+    width: 110%;
 }
 
 .form-group > p {
@@ -104,6 +104,6 @@ h1 {
     color: white;
 }
 
-.rmv {
-    width: 12%;
+.historyTable {
+    margin-bottom: 10%;
 }

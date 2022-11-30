@@ -1,0 +1,32 @@
+<html>
+{% block content %}
+  <head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/login.css')}}">
+  </head>
+
+
+  <body>
+    <div class="loginContainer container">
+      <h1>Login</h1>
+      <br>
+
+    <form action="/login" method="post">
+      <input class="inputField1" type="text" placeholder="Username" name="username" value="{{request.form.username }}">
+      <input class="inputField2" type="password" placeholder="Password" name="password" value="{{request.form.password }}">
+      <input class="btn btn-primary" type="submit" value="Login">
+    </form>
+
+    {% for mesg in get_flashed_messages() %}
+      <h4 class="flashMsg">{{ mesg }}</h4>
+    {% endfor %}
+
+    </div>
+
+  </body>
+{% endblock %}
+
+</html>

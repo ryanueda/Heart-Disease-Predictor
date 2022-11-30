@@ -1,0 +1,61 @@
+html, body {
+    background: rgb(138, 81, 61);
+    text-align: center;
+}
+
+.loginContainer {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 400px;
+    height: 450;
+    background-color: white;
+    border-radius: 25px;
+}
+
+h1 {
+    padding: 40px;
+}
+
+form {
+    display: inline-block;
+}
+
+.inputField1 {
+    float: left;
+    left: 50%;
+    top: 50%;
+    margin-left: -25%;
+    position: absolute;
+    margin-top: -25%;
+}
+
+.inputField2 {
+    float: left;
+    left: 50%;
+    top: 55%;
+    margin-left: -25%;
+    position: absolute;
+    margin-top: -15%;
+}
+
+.btn {
+    float: left;
+    left: 50%;
+    top: 55%;
+    margin-left: -10%;
+    position: absolute;
+    margin-top: 3%;
+}
+
+.error {
+    font-size: 400px;
+    background-color: white;
+}
+
+.flashMsg {
+    margin-top: 50%;
+}

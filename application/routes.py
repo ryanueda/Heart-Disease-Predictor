@@ -23,7 +23,6 @@ def index_page():
 ## home page
 @app.route('/')
 @app.route('/home')
-# @app.route('/predict')
 def home_page():
     return render_template("home.html", entries=get_entries(), predict_type=predict_type, title="Home Page")
 
@@ -181,3 +180,18 @@ def get_entry(id):
 def api_delete(id):
     entry = remove_entry(int(id))
     return jsonify({'result':'ok'})
+
+## route to handle login page
+# @app.route('/')
+@app.route('/login', methods=['GET', 'POST'])
+def login_page():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'admin' or request.form['password'] != 'password':
+            error = 'Invalid Credentials. Try Again.'
+            flash(error, "danger")
+            return render_template("login.html", title="Login Page", error=error)
+        else:
+            return render_template("home.html", entries=get_entries(), predict_type=predict_type, title="Home Page")
+
+    return render_template("login.html", title="Login Page", error=error)

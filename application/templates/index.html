@@ -8,69 +8,84 @@
             <fieldset class="form-group">
                 <legend>{{title}}</legend>
                 {{ form.hidden_tag() }}
-                <p>
-                    {{ form.HighBP.label }}<br>
-                    {{ form.HighBP(class_='form-control') }}
-                    {% for error in form.HighBP.errors %}
-                    <span class="error-message">{{ error }}</span>
+                <p id="bpField">
+                    {{form.HighBP.label(class_="form-control")}}
+                    {% for subfield in form.HighBP %}
+                        <tr>
+                            <td>{{ subfield }}</td>
+                            <td>{{ subfield.label }}</td>
+                        </tr>
                     {% endfor %}
                 </p>
-                <p>
-                    {{ form.HighChol.label }}<br>
-                    {{ form.HighChol(class_='form-control') }}
-                    {% for error in form.HighChol.errors %}
-                    <span class="error-message">{{ error }}</span>
+                <p id="cholField">
+                    {{form.HighChol.label(class_="form-control")}}
+                    {% for subfield in form.HighChol %}
+                        <tr>
+                            <td>{{ subfield }}</td>
+                            <td>{{ subfield.label }}</td>
+                        </tr>
                     {% endfor %}
                 </p>
-                <p>
-                    {{ form.BMI.label }}<br>
-                    {{ form.BMI(class_='form-control') }}
+                <p id="bmiField" class="bmi">
+                    {{ form.BMI.label(class_="bmiAge") }}<br>
+                    {{ form.BMI(id_="bmiAge", class_='form-control') }}
                     {% for error in form.BMI.errors %}
                     <span class="error-message">{{ error }}</span>
                     {% endfor %}
                 </p>
-                <p>
-                    {{ form.Smoker.label }}<br>
-                    {{ form.Smoker(class_='form-control') }}
-                    {% for error in form.Smoker.errors %}
-                    <span class="error-message">{{ error }}</span>
+                <p id="smokerField">
+                    {{form.Smoker.label(class_="form-control")}}
+                    {% for subfield in form.Smoker %}
+                        <tr>
+                            <td>{{ subfield }}</td>
+                            <td>{{ subfield.label }}</td>
+                        </tr>
                     {% endfor %}
                 </p>
-                <p>
-                    {{ form.Stroke.label }}<br>
-                    {{ form.Stroke(class_='form-control') }}
-                    {% for error in form.Stroke.errors %}
-                    <span class="error-message">{{ error }}</span>
+                <p id="strokeField">
+                    {{form.Stroke.label(class_="form-control")}}
+                    {% for subfield in form.Stroke %}
+                        <tr>
+                            <td>{{ subfield }}</td>
+                            <td>{{ subfield.label }}</td>
+                        </tr>
                     {% endfor %}
                 </p>
-                <p>
-                    {{ form.Diabetes.label }}<br>
-                    {{ form.Diabetes(class_='form-control') }}
-                    {% for error in form.Diabetes.errors %}
-                    <span class="error-message">{{ error }}</span>
+                <p id="diabetesField">
+                    {{form.Diabetes.label(class_="form-control")}}
+                    {% for subfield in form.Diabetes %}
+                        <tr>
+                            <td>{{ subfield }}</td>
+                            <td>{{ subfield.label }}</td>
+                        </tr>
                     {% endfor %}
                 </p>
-                <p>
-                    {{ form.HvyAlcoholConsump.label }}<br>
-                    {{ form.HvyAlcoholConsump(class_='form-control') }}
-                    {% for error in form.HvyAlcoholConsump.errors %}
-                    <span class="error-message">{{ error }}</span>
+                <p id="alcField">
+                    {{form.HvyAlcoholConsump.label(class_="form-control")}}
+                    {% for subfield in form.HvyAlcoholConsump %}
+                        <tr>
+                            <td>{{ subfield }}</td>
+                            <td>{{ subfield.label }}</td>
+                        </tr>
                     {% endfor %}
                 </p>
-                <p>
-                    {{ form.Sex.label }}<br>
-                    {{ form.Sex(class_='form-control') }}
-                    {% for error in form.Sex.errors %}
-                    <span class="error-message">{{ error }}</span>
+                <p id="sexField">
+                    {{form.Sex.label(class_="form-control")}}
+                    {% for subfield in form.Sex %}
+                        <tr>
+                            <td>{{ subfield }}</td>
+                            <td>{{ subfield.label }}</td>
+                        </tr>
                     {% endfor %}
                 </p>
-                <p>
-                    {{ form.Age.label }}<br>
-                    {{ form.Age(class_='form-control') }}
+                <p id="ageField">
+                    {{ form.Age.label(class_="bmiAge") }}<br>
+                    {{ form.Age(id_="age", class_='form-control') }}
                     {% for error in form.Age.errors %}
                     <span class="error-message">{{ error }}</span>
-                    {% endfor %}
+                    {% endfor %} 
                 </p>
+
                 <p class="submit">
                     {{ form.submit(class_='form-control') }}
                 </p>
@@ -78,47 +93,5 @@
         </form>
     </div>
     <hr>
-    <table class="historyTable table table-striped">
-        <thead>
-            <tr>
-                <th>HighBP</th>
-                <th>HighChol</th>
-                <th>BMI</th>
-                <th>Smoker</th>
-                <th>Stroke</th>
-                <th>Diabetes</th>
-                <th>HvyAlcoholConsump</th>
-                <th>Sex</th>
-                <th>Age</th>
-                <th>Prediction</th>
-                <th>Timestamp</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            {% for entry in entries %}
-            <tr class="historyTable">
-                <td>{{ entry.HighBP}}</td>
-                <td>{{ entry.HighChol }}</td>
-                <td>{{ entry.BMI}}</td>
-                <td>{{ entry.Smoker }}</td>
-                <td>{{ entry.Stroke}}</td>
-                <td>{{ entry.Diabetes}}</td>
-                <td>{{ entry.HvyAlcoholConsump}}</td>
-                <td>{{ entry.Sex}}</td>
-                <td>{{ entry.Age}}</td>
-                <td>{{ predict_type[entry.prediction|int]}}</td>
-                <td>{{ entry.predicted_on.strftime("%d %b %y %H:%M")}}</td>
-                <td>
-                    <form name="frmRemoveEntry" action="/remove" method="post" novalidate>
-                        <input type="hidden" name="id" value="{{entry.id}}">
-                        <input type="submit" class="rmv form-control btn-danger" value="Remove">
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 </div>
 {% endblock %}

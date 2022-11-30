@@ -13,7 +13,6 @@ from flask import render_template
 from application.forms import PredictionForm
 
 #Handles http://127.0.0.1:5000/
-@app.route('/')
 @app.route('/index')
 @app.route('/predict')
 def index_page():
@@ -21,7 +20,6 @@ def index_page():
     return render_template("index.html", form=form1, entries=get_entries(), predict_type=predict_type, title="Enter Parameters For Prediction")
 
 ## home page
-@app.route('/')
 @app.route('/home')
 def home_page():
     return render_template("home.html", entries=get_entries(), predict_type=predict_type, title="Home Page")
@@ -182,7 +180,7 @@ def api_delete(id):
     return jsonify({'result':'ok'})
 
 ## route to handle login page
-# @app.route('/')
+@app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
     error = None
@@ -195,3 +193,7 @@ def login_page():
             return render_template("home.html", entries=get_entries(), predict_type=predict_type, title="Home Page")
 
     return render_template("login.html", title="Login Page", error=error)
+
+@app.route('/history')
+def history_page():
+    return render_template("history.html", entries=get_entries(), predict_type=predict_type, title="History Page")

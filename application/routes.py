@@ -9,10 +9,9 @@ from datetime import datetime
 def hello_world():
     return "<h1>Hello World</h1>"
 
-...
 from flask import render_template
 from application.forms import PredictionForm
-...
+
 #Handles http://127.0.0.1:5000/
 @app.route('/')
 @app.route('/index')
@@ -20,6 +19,13 @@ from application.forms import PredictionForm
 def index_page():
     form1 = PredictionForm()
     return render_template("index.html", form=form1, entries=get_entries(), predict_type=predict_type, title="Enter Parameters For Prediction")
+
+## home page
+@app.route('/')
+@app.route('/home')
+# @app.route('/predict')
+def home_page():
+    return render_template("home.html", entries=get_entries(), predict_type=predict_type, title="Home Page")
 
 ## predict route
 from flask import render_template, request, flash

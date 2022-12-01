@@ -1,4 +1,10 @@
-FROM mybase
+#Due to scikit-learn
+FROM python:3.8-slim
+#Update packages installed in the image
+RUN apt-get update -y
+# To fix gcc error during build.
+# RUN apt install gcc -y
+RUN apt-get install build-essential -y
 #Change our working directory to app folder
 WORKDIR /app-docker
 COPY requirements.txt requirements.txt
@@ -9,4 +15,4 @@ COPY . .
 # Expose port 5000 for http communication
 EXPOSE 5000
 # Run gunicorn web server and binds it to the port
-CMD python3 -m flask run --host=0.0.0.0
+CMD gunicorn app:app

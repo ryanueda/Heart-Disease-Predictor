@@ -44,11 +44,11 @@ def test_EntryClass(entrylist,capsys):
 # What if output is negative
 @pytest.mark.xfail(reason="arguments <= 0")
 @pytest.mark.parametrize("entrylist",[
-[ 0, 1, 1, 1, 0, 0, 1, 0, 10, 1],
-[ 0, 1, 1, 1, 0, 0, 1, 0, 10, 1],
-[ 0, 1, 1, 1, 0, 0, 1, 0, 10, 1],
-[ 0, 1, 1, 1, 0, 0, 1, 0, 10, 1],
-[ 0, 1, 1, 1, 0, 0, 1, 0, 10, 1],
+[ 0, 1, 1, 1, 0, 0, 1, 0, 110, 1],
+[ 0, 2, 1, 1, 0, 0, 1, 0, 200, 1],
+[ 0, 1, 1, 44, 0, 0, 1, 0, -3, 1],
+[ 0, 1, 1, 1, 0, 0, 5, 0, 10, 1],
+[ 0, 1, 1, 1, 0, 0, 7, 0, 10, 1],
 ])
 def test_EntryValidation(entrylist, capsys):
     test_EntryClass(entrylist, capsys)
@@ -73,9 +73,6 @@ def test_addAPI(client,entrylist,capsys):
             'Sex' : entrylist[7],
             'Age' : entrylist[8],
             'prediction' : entrylist[9]}
-        #use client object to post
-        #data is converted to json
-        #posting content is specified
         response = client.post('/api/add',
         data=json.dumps(data1),
         content_type="application/json",)
@@ -129,7 +126,6 @@ def test_deleteAPI(client, entrylist, capsys):
                  'Sex': entrylist[7],
                  'Age': entrylist[8],
                  'prediction': entrylist[9]}
-        #use client object  to post data  and converted to json
         response = client.post('/api/add', data=json.dumps(datal),
                     content_type='application/json',)
         response_body = json.loads(response.get_data(as_text=True))

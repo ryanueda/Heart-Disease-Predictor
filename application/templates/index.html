@@ -1,89 +1,113 @@
 <!-- Inherits from layout.html -->
 {% extends "layout.html" %}
+
+{% block nav %}{% endblock %}
+
 <!-- The block content replace the one encapsulated in layout.html -->
 {% block content %}
+
+<script>
+    function scrollDown() {
+      window.scrollTo(0, document.scrollHeight);
+    }
+</script>
+
 <div class="row">
-    <div class="col-md-6 offset-md-3">
+      
+    <div class="col-md-10 offset-md-3">
         <form name="frmPredict" action="/predict" method="post" novalidate>
             <fieldset class="form-group">
                 <legend>{{title}}</legend>
                 {{ form.hidden_tag() }}
+                <p id="">
+                    {{form.Qn1.label(class_="form-control")}}
+                    {% for subfield in form.Qn1 %}
+                        <tr>
+                            <td>{{ subfield }}</td>
+                            <td class="radio" onclick=scrollDown()>{{ subfield.label }}</td>
+                        </tr> <br>
+                    {% endfor %}
+                </p>
                 <p id="bpField">
-                    {{form.HighBP.label(class_="form-control")}}
-                    {% for subfield in form.HighBP %}
+                    {{form.Qn2.label(class_="form-control")}}
+                    {% for subfield in form.Qn2 %}
                         <tr>
                             <td>{{ subfield }}</td>
                             <td>{{ subfield.label }}</td>
-                        </tr>
+                        </tr> <br>
                     {% endfor %}
                 </p>
-                <p id="cholField">
-                    {{form.HighChol.label(class_="form-control")}}
-                    {% for subfield in form.HighChol %}
+                <p id="bpField">
+                    {{form.Qn3.label(class_="form-control")}}
+                    {% for subfield in form.Qn3 %}
                         <tr>
                             <td>{{ subfield }}</td>
                             <td>{{ subfield.label }}</td>
-                        </tr>
+                        </tr> <br>
                     {% endfor %}
                 </p>
-                <p id="bmiField" class="bmi">
-                    {{ form.BMI.label(class_="bmiAge") }}<br>
-                    {{ form.BMI(id_="bmiAge", class_='form-control') }}
-                    {% for error in form.BMI.errors %}
-                    <span class="error-message">{{ error }}</span>
-                    {% endfor %}
-                </p>
-                <p id="smokerField">
-                    {{form.Smoker.label(class_="form-control")}}
-                    {% for subfield in form.Smoker %}
+                <p id="bpField">
+                    {{form.Qn4.label(class_="form-control")}}
+                    {% for subfield in form.Qn4 %}
                         <tr>
                             <td>{{ subfield }}</td>
                             <td>{{ subfield.label }}</td>
-                        </tr>
+                        </tr> <br>
                     {% endfor %}
                 </p>
-                <p id="strokeField">
-                    {{form.Stroke.label(class_="form-control")}}
-                    {% for subfield in form.Stroke %}
+                <p id="bpField">
+                    {{form.Qn5.label(class_="form-control")}}
+                    {% for subfield in form.Qn5 %}
                         <tr>
                             <td>{{ subfield }}</td>
                             <td>{{ subfield.label }}</td>
-                        </tr>
+                        </tr> <br>
                     {% endfor %}
                 </p>
-                <p id="diabetesField">
-                    {{form.Diabetes.label(class_="form-control")}}
-                    {% for subfield in form.Diabetes %}
+                <p id="bpField">
+                    {{form.Qn6.label(class_="form-control")}}
+                    {% for subfield in form.Qn6 %}
                         <tr>
                             <td>{{ subfield }}</td>
                             <td>{{ subfield.label }}</td>
-                        </tr>
+                        </tr> <br>
                     {% endfor %}
                 </p>
-                <p id="alcField">
-                    {{form.HvyAlcoholConsump.label(class_="form-control")}}
-                    {% for subfield in form.HvyAlcoholConsump %}
+                <p id="bpField">
+                    {{form.Qn7.label(class_="form-control")}}
+                    {% for subfield in form.Qn7 %}
                         <tr>
                             <td>{{ subfield }}</td>
                             <td>{{ subfield.label }}</td>
-                        </tr>
+                        </tr> <br>
                     {% endfor %}
                 </p>
-                <p id="sexField">
-                    {{form.Sex.label(class_="form-control")}}
-                    {% for subfield in form.Sex %}
+                <p id="bpField">
+                    {{form.Qn8.label(class_="form-control")}}
+                    {% for subfield in form.Qn8 %}
                         <tr>
                             <td>{{ subfield }}</td>
                             <td>{{ subfield.label }}</td>
-                        </tr>
+                        </tr> <br>
                     {% endfor %}
                 </p>
-                <p id="ageField">
-                    {{ form.Age.label(class_="bmiAge") }}<br>
-                    {{ form.Age(id_="age", class_='form-control') }}
-                    {% for error in form.Age.errors %}
-                    <span class="error-message">{{ error }}</span>
-                    {% endfor %} 
+                <p id="bpField">
+                    {{form.Qn9.label(class_="form-control")}}
+                    {% for subfield in form.Qn9 %}
+                        <tr>
+                            <td>{{ subfield }}</td>
+                            <td>{{ subfield.label }}</td>
+                        </tr> <br>
+                    {% endfor %}
+                </p>
+                <p id="bpField">
+                    {{form.Qn10.label(class_="form-control")}}
+                    {% for subfield in form.Qn10 %}
+                        <tr>
+                            <td>{{ subfield }}</td>
+                            <td>{{ subfield.label }}</td>
+                        </tr> <br>
+                    {% endfor %}
                 </p>
 
                 <p class="submit">

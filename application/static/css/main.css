@@ -33,7 +33,7 @@ hr {
 
 input[type=text] {
     display: inline-block;
-    border: none;
+    border: black;
     background: rgb(149, 148, 148);
 }
 
@@ -112,6 +112,7 @@ form {
     padding: 0 5%;
     font-family: Montserrat;
     font-weight: 400;
+    border: #0f0f0f;
 }
 
 .form-control {
@@ -444,33 +445,61 @@ h1 {
     width: 180px;
 }
 
+td {
+    float: left;
+}
+
 #cholField {
-    margin-left: 22%;
+    margin-left: 0%;
 }
 
 #bmiField {
-    margin-top: 15px;
+    margin-top: 0;
 }
 
 #smokerField {
-    margin-top: 15px;
-    margin-left: 17%;
+    margin-top: 0;
+    margin-left: 0%;
 }
 
 #strokeField {
-    margin-top: 15px;
+    margin-top: 0;
 }
 
 #diabetesField {
-    margin-top: 15px;
-    margin-left: 22%;
+    margin-top: 0;
+    margin-left: 0%;
 }
 
 #alcField {
-    margin-top: 15px;
+    margin-top: 0;
 }
 
 #sexField {
-    margin-top: 15px;
-    margin-left: 5%;
+    margin-top: 0;
+    margin-left: 0%;
+}
+
+input[type=radio] {
+    display: none;
+}
+
+label {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid #ccc; /* border style */
+  border-radius: 3px; /* rounded corners */
+  cursor: pointer;
+}
+
+input[type="radio"]:checked + label {
+  background-color: #e9e9e9; /* background color when selected */
+}
+
+.form-group > p {
+    border: #0f0f0f;
+}
+
+#bpField {
+    margin-top: 50%;
 }

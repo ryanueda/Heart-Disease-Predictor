@@ -17,7 +17,7 @@ from application.forms import PredictionForm
 @app.route('/predict')
 def index_page():
     form1 = PredictionForm()
-    return render_template("index.html", form=form1, entries=get_entries(), predict_type=predict_type, title="Enter Parameters For Prediction")
+    return render_template("index.html", form=form1, entries=get_entries(), predict_type=predict_type, title="yan's personality test")
 
 ## home page
 @app.route('/home')
@@ -33,35 +33,37 @@ def predict():
     form = PredictionForm()
     if request.method == 'POST':
         if form.validate_on_submit():  
-            HighBP = form.HighBP.data
-            HighChol = form.HighChol.data
-            BMI = form.BMI.data
-            Smoker = form.Smoker.data
-            Stroke = form.Stroke.data
-            Diabetes = form.Diabetes.data
-            HvyAlcoholConsump = form.HvyAlcoholConsump.data
-            Sex = form.Sex.data
-            Age = form.Age.data
-            X = [[HighBP, HighChol, BMI, Smoker, Stroke, Diabetes, HvyAlcoholConsump, Sex, Age]]
+            Qn1 = form.Qn1.data
+            Qn2 = form.Qn2.data
+            Qn3 = form.Qn3.data
+            Qn4 = form.Qn4.data
+            Qn5 = form.Qn5.data
+            Qn6 = form.Qn6.data
+            Qn7 = form.Qn7.data
+            Qn8 = form.Qn8.data
+            Qn9 = form.Qn9.data
+            Qn10 = form.Qn10.data
+            X = [[Qn1, Qn2, Qn3, Qn4, Qn5, Qn6, Qn7, Qn8, Qn9, Qn10]]
             result = ai_model.predict(X)
-            new_entry = Entry(HighBP=HighBP,
-                              HighChol=HighChol,
-                              BMI=BMI,
-                              Smoker=Smoker,
-                              Stroke=Stroke,
-                              Diabetes=Diabetes,
-                              HvyAlcoholConsump=HvyAlcoholConsump,
-                              Sex=Sex,
-                              Age=Age,
-                              prediction=int(result[0]),
-                             predicted_on=datetime.utcnow())
+            new_entry = Entry(Qn1=Qn1, 
+                            Qn2=Qn2,
+                            Qn3=Qn3,
+                            Qn4=Qn4,
+                            Qn5=Qn5,
+                            Qn6=Qn6,
+                            Qn7=Qn7,
+                            Qn8=Qn8,
+                            Qn9=Qn9,
+                            Qn10=Qn10,
+                            prediction=int(result[0]),
+                            predicted_on=datetime.utcnow())
             add_entry(new_entry)
             
             flash(f"Prediction: {predict_type[int(result[0])]}", "success")
-            return render_template("index.html", title="Enter Parameters For Prediction", form=form, index=True, entries=get_entries(), predict_type=predict_type )
+            return render_template("index.html", title="yan's personality test", form=form, index=True, entries=get_entries(), predict_type=predict_type )
         else:
             flash("Error, cannot proceed with prediction","danger")
-            return render_template("index.html", title="Enter Parameters For Prediction", form=form, index=True )
+            return render_template("index.html", title="yan's personality test", form=form, index=True )
 
 @app.route('/remove', methods=['POST'])
 def remove():
@@ -81,15 +83,16 @@ def api_get(id):
     #Prepare a dictionary for json conversion
     data = {
         'id' : entry.id,
-        'HighBP' : entry.HighBP,
-        'HighChol' : entry.HighChol,
-        'BMI' : entry.BMI,
-        'Smoker' : entry.Smoker,
-        'Stroke' : entry.Stroke,
-        'Diabetes' : entry.Diabetes,
-        'HvyAlcoholConsump' : entry.HvyAlcoholConsump,
-        'Sex' : entry.Sex,
-        'Age' : entry.Age,
+        'Qn1' : entry.Qn1,
+        'Qn2' : entry.Qn2,
+        'Qn3' : entry.Qn3,
+        'Qn4' : entry.Qn4,
+        'Qn5' : entry.Qn5,
+        'Qn6' : entry.Qn6,
+        'Qn7' : entry.Qn7,
+        'Qn8' : entry.Qn8,
+        'Qn9' : entry.Qn9,
+        'Qn10': entry.Qn10,
         'prediction': entry.prediction}
     #Convert the data to json
     result = jsonify(data)
@@ -135,27 +138,29 @@ def api_add():
     #retrieve the json file posted from client
     data = request.get_json()
     #retrieve each field from the data
-    HighBP = data['HighBP']
-    HighChol = data['HighChol']
-    BMI = data['BMI']
-    Smoker = data['Smoker']
-    Stroke = data['Stroke']
-    Diabetes = data['Diabetes']
-    HvyAlcoholConsump = data['HvyAlcoholConsump']
-    Sex = data['Sex']
-    Age = data['Age']
+    Qn1 = data['Qn1']
+    Qn2 = data['Qn2']
+    Qn3 = data['Qn3']
+    Qn4 = data['Qn4']
+    Qn5 = data['Qn5']
+    Qn6 = data['Qn6']
+    Qn7 = data['Qn7']
+    Qn8 = data['Qn8']
+    Qn9 = data['Qn9']
+    Qn10 = data['Qn10']
     prediction = data['prediction']
     #create an Entry object store all data for db action
     new_entry = Entry(
-        HighBP=HighBP, 
-        HighChol=HighChol,
-        BMI=BMI,
-        Smoker=Smoker,
-        Stroke=Stroke,
-        Diabetes=Diabetes,
-        HvyAlcoholConsump=HvyAlcoholConsump,
-        Sex=Sex,
-        Age=Age,
+        Qn1=Qn1, 
+        Qn2=Qn2,
+        Qn3=Qn3,
+        Qn4=Qn4,
+        Qn5=Qn5,
+        Qn6=Qn6,
+        Qn7=Qn7,
+        Qn8=Qn8,
+        Qn9=Qn9,
+        Qn10=Qn10,
         prediction = prediction,
         predicted_on=datetime.utcnow())
     #invoke the add entry function to add entry
